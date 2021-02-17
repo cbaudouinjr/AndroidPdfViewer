@@ -899,6 +899,12 @@ public class PDFView extends RelativeLayout {
         callbacks.callOnPageScroll(getCurrentPage(), positionOffset);
 
         redraw();
+
+        int pageNumber = findFocusPage(this.currentXOffset, this.currentYOffset);
+
+        if (pageNumber > 0 && pageNumber < pdfFile.getPagesCount() && pageNumber != getCurrentPage()) {
+            showPage(pageNumber);
+        }
     }
 
     void loadPageByOffset() {
